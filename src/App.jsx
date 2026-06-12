@@ -5,7 +5,7 @@ import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 function App() {
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full min-h-screen overflow-x-hidden">
       <Hero />
       <Skills />
       <Profile />

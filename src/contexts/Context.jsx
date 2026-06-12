@@ -10,15 +10,20 @@ export const MyContextProvider = ({ children }) => {
     return languages["tr"];
   });
   useEffect(() => {
+    setLangData(languages[lang]);
     fetchLanguageData();
   }, [lang]);
-  console.log(langData);
 
   const fetchLanguageData = () => {
     const dataUrl = `https://reqres.in/api/workintech`;
-    axios.post(dataUrl, languages[lang]).then((res) => {
-      setLangData(res.data);
-    });
+    axios
+      .post(dataUrl, languages[lang])
+      .then((res) => {
+        setLangData(res.data.data ?? languages[lang]);
+      })
+      .catch(() => {
+        setLangData(languages[lang]);
+      });
   };
 
   function changeLang() {
